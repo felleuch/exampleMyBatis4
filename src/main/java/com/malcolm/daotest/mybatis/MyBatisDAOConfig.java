@@ -25,7 +25,7 @@ import java.sql.SQLException;
 @Configuration
 @EnableTransactionManagement  
 @PropertySource("classpath:dbconfig.properties")
-@ComponentScan({"com.malcolm.daotest.mybatis","com.malcolm.daotest.service.mybatis"})
+@ComponentScan({"com.malcolm.daotest.mybatis"})
 public class MyBatisDAOConfig {
 	
 	private static final String PROPERTY_NAME_DATABASE_DRIVER 	 = "dataSource.driver";
