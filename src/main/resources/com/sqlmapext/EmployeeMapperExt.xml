@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.malcolm.daotest.mybatis.mapperext.EmployeeMapperExt" >
-
-
-
-
-
-
-
-
+<mapper namespace="com.felleuch.daotest.mybatis.mapperext.EmployeeMapperExt" >
 
     <sql id="EmployeeInfo_Column_List" >
         employeeInfo.emp_id as 'employeeInfo.emp_id',
@@ -78,7 +70,7 @@
     </sql>
 
     <!-- Result Map with Collection and Associations -->
-    <resultMap id="EmployeesMap" type="com.malcolm.daotest.mybatis.dto.EmployeeDTO" >
+    <resultMap id="EmployeesMap" type="com.felleuch.daotest.mybatis.dto.EmployeeDTO" >
         <id column="employeeInfo.emp_id" property="emp_id" jdbcType="INTEGER" />
         <result column="employeeInfo.emp_first_name" property="emp_first_name" jdbcType="VARCHAR" />
         <result column="employeeInfo.emp_last_name" property="emp_last_name" jdbcType="VARCHAR" />
@@ -89,40 +81,40 @@
         <result column="employeeInfo.mgr_id" property="mgr_id" jdbcType="INTEGER" />
         <result column="employeeInfo.update_user" property="update_user" jdbcType="VARCHAR" />
         <result column="employeeInfo.update_date" property="update_date" jdbcType="TIMESTAMP" />
-        <association property="designation" javaType="com.malcolm.daotest.mybatis.model.Designation">
+        <association property="designation" javaType="com.felleuch.daotest.mybatis.model.Designation">
             <id 	column="designationInfo.designation_id" property="designation_id" jdbcType="INTEGER" />
             <result column="designationInfo.designation_name" property="designation_name" jdbcType="VARCHAR" />
         </association>
-        <association property="department" javaType="com.malcolm.daotest.mybatis.model.Department">
+        <association property="department" javaType="com.felleuch.daotest.mybatis.model.Department">
             <id column="departmentInfo.dept_id" property="dept_id" jdbcType="INTEGER" />
             <result column="departmentInfo.dept_name" property="dept_name" jdbcType="VARCHAR" />
             <result column="departmentInfo.dept_desc" property="dept_desc" jdbcType="VARCHAR" />
             <result column="departmentInfo.dept_mgr" property="dept_mgr" jdbcType="INTEGER" />
 
         </association>
-        <association property="manager" javaType="com.malcolm.daotest.mybatis.model.Employee">
+        <association property="manager" javaType="com.felleuch.daotest.mybatis.model.Employee">
             <id column="managerInfo.emp_id" property="emp_id" jdbcType="INTEGER" />
             <result column="managerInfo.emp_first_name" property="emp_first_name" jdbcType="VARCHAR" />
             <result column="managerInfo.emp_last_name" property="emp_last_name" jdbcType="VARCHAR" />
             <result column="managerInfo.designation_id" property="designation_id" jdbcType="INTEGER" />
         </association>
-        <collection property="employeeRoleAssn" ofType="com.malcolm.daotest.mybatis.dto.RoleEmployeeDTO">
+        <collection property="employeeRoleAssn" ofType="com.felleuch.daotest.mybatis.dto.RoleEmployeeDTO">
             <id column="roleAssnInfo.role_emp_assn_id"  property="role_emp_assn_id" jdbcType="INTEGER" />
             <result column="roleAssnInfo.role_id" property="role_id" jdbcType="INTEGER" />
             <result column="roleAssnInfo.emp_id" property="emp_id" jdbcType="INTEGER" />
-            <association property="role" javaType="com.malcolm.daotest.mybatis.model.Role">
+            <association property="role" javaType="com.felleuch.daotest.mybatis.model.Role">
                 <id column="roleInfo.role_id" property="role_id" jdbcType="INTEGER" />
                 <result column="roleInfo.role_name" property="role_name" jdbcType="VARCHAR" />
                 <result column="roleInfo.role_desc" property="role_desc" jdbcType="VARCHAR" />
             </association>
         </collection>
-        <collection property="employeeProjectAssn" ofType="com.malcolm.daotest.mybatis.dto.ProjectEmployeeDTO">
+        <collection property="employeeProjectAssn" ofType="com.felleuch.daotest.mybatis.dto.ProjectEmployeeDTO">
             <id column="employeeProjectAssnInfo.project_emp_assn_id"  property="project_emp_assn_id" jdbcType="INTEGER" />
             <result column="employeeProjectAssnInfo.project_id" property="project_id" jdbcType="INTEGER" />
             <result column="employeeProjectAssnInfo.emp_id" property="emp_id" jdbcType="INTEGER" />
             <result column="employeeProjectAssnInfo.update_user" property="update_user" jdbcType="VARCHAR" />
             <result column="employeeProjectAssnInfo.update_date" property="update_date" jdbcType="TIMESTAMP" />
-            <association property="project" javaType="com.malcolm.daotest.mybatis.dto.ProjectDTO">
+            <association property="project" javaType="com.felleuch.daotest.mybatis.dto.ProjectDTO">
                 <id column="projectInfo.project_id"  property="project_id" jdbcType="INTEGER" />
                 <result column="projectInfo.project_name" property="project_name" jdbcType="VARCHAR" />
                 <result column="projectInfo.project_desc" property="project_desc" jdbcType="VARCHAR" />
@@ -131,7 +123,7 @@
                 <result column="projectInfo.project_enddate" property="project_enddate" jdbcType="TIMESTAMP" />
                 <result column="projectInfo.update_user" property="update_user" jdbcType="VARCHAR" />
                 <result column="projectInfo.update_date" property="update_date" jdbcType="TIMESTAMP" />
-                <association property="manager" javaType="com.malcolm.daotest.mybatis.model.Employee">
+                <association property="manager" javaType="com.felleuch.daotest.mybatis.model.Employee">
                     <id 	column="projectManagerInfo.emp_id" property="emp_id" jdbcType="INTEGER" />
                     <result column="projectManagerInfo.emp_first_name" property="emp_first_name" jdbcType="VARCHAR" />
                     <result column="projectManagerInfo.emp_last_name" property="emp_last_name" jdbcType="VARCHAR" />
@@ -143,18 +135,18 @@
 
 
     <!-- Get All Employees -->
-    <select id="getAllEmployees" resultMap="com.malcolm.daotest.mybatis.mapperext.EmployeeMapperExt.EmployeesMap">
+    <select id="getAllEmployees" resultMap="com.felleuch.daotest.mybatis.mapperext.EmployeeMapperExt.EmployeesMap">
         SELECT
-        <include refid="com.malcolm.daotest.mybatis.mapperext.EmployeeMapperExt.EmployeeInfo_Column_List" />,
-        <include refid="com.malcolm.daotest.mybatis.mapperext.EmployeeMapperExt.DesignationInfo_Column_List" />,
-        <include refid="com.malcolm.daotest.mybatis.mapperext.EmployeeMapperExt.DepartmentInfo_Column_List" />,
-        <include refid="com.malcolm.daotest.mybatis.mapperext.EmployeeMapperExt.DeptManagerInfo_Column_List" />,
-        <include refid="com.malcolm.daotest.mybatis.mapperext.EmployeeMapperExt.ManagerInfo_Column_List" />,
-        <include refid="com.malcolm.daotest.mybatis.mapperext.EmployeeMapperExt.RoleAssnInfo_Column_List" />,
-        <include refid="com.malcolm.daotest.mybatis.mapperext.EmployeeMapperExt.RoleInfo_Column_List" />,
-        <include refid="com.malcolm.daotest.mybatis.mapperext.EmployeeMapperExt.EmployeeProjectAssnInfo_Column_List" />,
-        <include refid="com.malcolm.daotest.mybatis.mapperext.EmployeeMapperExt.ProjectInfo_Column_List" />,
-        <include refid="com.malcolm.daotest.mybatis.mapperext.EmployeeMapperExt.ProjectManagerInfo_Column_List" />
+        <include refid="com.felleuch.daotest.mybatis.mapperext.EmployeeMapperExt.EmployeeInfo_Column_List" />,
+        <include refid="com.felleuch.daotest.mybatis.mapperext.EmployeeMapperExt.DesignationInfo_Column_List" />,
+        <include refid="com.felleuch.daotest.mybatis.mapperext.EmployeeMapperExt.DepartmentInfo_Column_List" />,
+        <include refid="com.felleuch.daotest.mybatis.mapperext.EmployeeMapperExt.DeptManagerInfo_Column_List" />,
+        <include refid="com.felleuch.daotest.mybatis.mapperext.EmployeeMapperExt.ManagerInfo_Column_List" />,
+        <include refid="com.felleuch.daotest.mybatis.mapperext.EmployeeMapperExt.RoleAssnInfo_Column_List" />,
+        <include refid="com.felleuch.daotest.mybatis.mapperext.EmployeeMapperExt.RoleInfo_Column_List" />,
+        <include refid="com.felleuch.daotest.mybatis.mapperext.EmployeeMapperExt.EmployeeProjectAssnInfo_Column_List" />,
+        <include refid="com.felleuch.daotest.mybatis.mapperext.EmployeeMapperExt.ProjectInfo_Column_List" />,
+        <include refid="com.felleuch.daotest.mybatis.mapperext.EmployeeMapperExt.ProjectManagerInfo_Column_List" />
         FROM
         employee employeeInfo
         LEFT OUTER JOIN 	designation     	designationInfo 			on employeeInfo.designation_id 			= designationInfo.designation_id
@@ -169,9 +161,9 @@
     </select>
 
 
-    <select id="getAllEmployeesSimple" resultMap="com.malcolm.daotest.mybatis.mapper.EmployeeMapper.BaseResultMap">
+    <select id="getAllEmployeesSimple" resultMap="com.felleuch.daotest.mybatis.mapper.EmployeeMapper.BaseResultMap">
         SELECT
-        <include refid="com.malcolm.daotest.mybatis.mapper.EmployeeMapper.Base_Column_List"/>
+        <include refid="com.felleuch.daotest.mybatis.mapper.EmployeeMapper.Base_Column_List"/>
         FROM
         employee
     </select>

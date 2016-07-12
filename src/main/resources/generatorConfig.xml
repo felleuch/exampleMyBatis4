@@ -17,13 +17,13 @@
         </javaTypeResolver>
 
 
-        <javaModelGenerator targetPackage="com.malcolm.daotest.mybatis.model" targetProject="src/main/java" />
+        <javaModelGenerator targetPackage="com.felleuch.daotest.mybatis.model" targetProject="src/main/java" />
 
 
-        <sqlMapGenerator targetPackage="com.malcolm.daotest.mybatis.sqlmap" targetProject="src/main/resources" />
+        <sqlMapGenerator targetPackage="com.felleuch.daotest.mybatis.sqlmap" targetProject="src/main/resources" />
 
 
-        <javaClientGenerator targetPackage="com.malcolm.daotest.mybatis.mapper" targetProject="src/main/java" type="XMLMAPPER" />
+        <javaClientGenerator targetPackage="com.felleuch.daotest.mybatis.mapper" targetProject="src/main/java" type="XMLMAPPER" />
 
 
         <table tableName="department" enableSelectByExample="false" enableDeleteByExample="false" enableCountByExample="false" enableUpdateByExample="false" selectByExampleQueryId="false">
